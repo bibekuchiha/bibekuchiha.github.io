@@ -9,7 +9,7 @@
 <p align="center"> 
   <kbd>
   	<a href="https://bibekuchiha.github.io/" target="_blank">
-		<img src="image.png"></img>
+		<img src=""></img>
 	</a>
   </kbd>
 </p>
