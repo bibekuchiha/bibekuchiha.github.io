@@ -1,307 +1,623 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bibek Shah Shankhar | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Bibek Shah Shankhar</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="shortcut icon" href="https://img.icons8.com/color/48/000000/hearts.png" type="image/x-icon" />
+    html {
+      scroll-behavior: smooth;
+    }
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Indie+Flower'>
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
-        <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #08111f;
+      color: #e5eefc;
+      line-height: 1.6;
+    }
 
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/flexslider.css">
-        <link rel="stylesheet" href="css/services.css">
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-    </head>
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
 
-    <body>
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8, 17, 31, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-        <div class="header">
-            <div class="fixed-content">
-                <img class="port" src="img/pic01.jpg">
-                <h2>Bibek Shah Shankhar</h2>
-                <p style="color:#fff;">Software Engineer | Data Science Enthusiast</p>
-                <div class="icon-row">
-                    <a href="https://github.com/bibekuchiha"><i class="fa fa-github"></i></a>
-                    <a href="https://medium.com/@bibekshahshankhar"><i class="fa fa-medium"></i></a>
-                    <a href="https://www.linkedin.com/in/bibek-shah-shankhar/"><i class="fa fa-linkedin"></i></a>
-                </div>
-            </div>
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      font-size: 0.95rem;
+      color: #c7d7f2;
+    }
+
+    .nav-links a:hover {
+      color: #6ec1ff;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #08111f 0%, #10233f 45%, #17345b 100%);
+      padding: 90px 0 70px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: #74c7ff;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.75rem;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: 3.6rem;
+      line-height: 1.1;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      max-width: 720px;
+      color: #d7e4f8;
+    }
+
+    .hero-actions {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: #2f9fff;
+      color: white;
+      box-shadow: 0 12px 28px rgba(47, 159, 255, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #2494f5;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e7f0ff;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-card h3 {
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .hero-card .meta {
+      margin-bottom: 18px;
+    }
+
+    .hero-card span {
+      display: block;
+      font-size: 0.86rem;
+      color: #8fb0d8;
+      margin-bottom: 4px;
+    }
+
+    .hero-card p {
+      color: #eff6ff;
+      font-size: 0.98rem;
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-title {
+      font-size: 2.1rem;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      color: #a9bfdc;
+      max-width: 800px;
+      margin-bottom: 36px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+    }
+
+    .card {
+      background: #0e1a2e;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .highlight-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .highlight-item {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #111f36;
+      color: #dce9fb;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .skill-pill {
+      padding: 14px 16px;
+      background: #111f36;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      color: #e7f1ff;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .timeline-wrap {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      background: #0d182a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, #2f9fff, #74c7ff);
+    }
+
+    .timeline-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .timeline-top h3 {
+      color: #ffffff;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .timeline-top p {
+      color: #74c7ff;
+      font-weight: 500;
+    }
+
+    .timeline-date {
+      color: #9fb6d4;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .timeline-item .desc {
+      color: #d4e2f7;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project-card h3 {
+      color: #ffffff;
+      margin-bottom: 10px;
+      font-size: 1.14rem;
+    }
+
+    .project-card p {
+      color: #d1e0f3;
+      font-size: 0.97rem;
+    }
+
+    .contact {
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #07101d;
+    }
+
+    .contact p {
+      color: #bdd0ea;
+      max-width: 700px;
+      margin: 0 auto 26px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #7f98bb;
+      padding: 24px 0 40px;
+      font-size: 0.9rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-top {
+        flex-direction: column;
+      }
+
+      .hero h1 {
+        font-size: 2.7rem;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        right: 4%;
+        width: 220px;
+        flex-direction: column;
+        background: #0d182a;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 16px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 70px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">Bibek Shah Shankhar</a>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Portfolio</span>
+        <h1>Bibek Shah Shankhar</h1>
+        <p>
+          Data Analyst and Team Leader focused on operational reporting, automation, system integration, and data-driven decision-making. Experienced in terminal operations, SQL development, dashboarding, API integrations, and process modernization.
+        </p>
+        <div class="hero-actions">
+          <a href="https://www.linkedin.com/in/bibek-shah-shankhar/" class="btn btn-primary" target="_blank">LinkedIn</a>
+          <a href="https://github.com/bibekuchiha" class="btn btn-outline" target="_blank">GitHub</a>
+          <a href="mailto:shahshankharbibek@gmail.com" class="btn btn-outline">Email</a>
         </div>
-        <div class="second">
-            <div class="fixed-content">
-                <h1>Summary</h1>
-                <p> Graduated from Bachelor of Engineering in Information Science at RR Institute of
-                    Technology, Bangalore. Interested in developing Python/Deep Learning/Machine Learning and Data Science projects and Web development
-                    using PHP/MySQL and HTML/CSS/Javascript.<br> Further, I'm keen towards the Data Science field.</p>
-            </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="meta">
+          <span>Current Role</span>
+          <h3>Team Leader – Data Operations & Reporting</h3>
+        </div>
+        <div class="meta">
+          <span>Organization</span>
+          <p>PSA Halifax</p>
+        </div>
+        <div class="meta">
+          <span>Focus</span>
+          <p>SQL, Power BI, Automation, API Integration, WSO2 MI, Operational Analytics</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About</h2>
+      <p class="section-subtitle">
+        A data professional with hands-on experience in reporting, integration, and analytics, focused on building reliable operational data solutions and improving decision-making through automation and scalable reporting.
+      </p>
+
+      <div class="about-grid">
+        <div class="card">
+          <div class="highlight-list" id="highlightsList"></div>
         </div>
 
-        <section class="colorlib-about" data-section="about">
-            <div class="container">
-                <div class="row">
-                    <script type="text/javascript">
-                        var domains = ["Web development", "Course Solutions", "Code Snippets", "Data Science"];
-                        var icons = ["desktop", "key", "code", "university"];
-                        var urls = ["web_projects/index.html", "web_projects/index2.html", "web_projects/index3.html",
-                            "web_projects/index4.html"
-                        ];
-                        var ids = [3, 4, 2, 1];
-                        for (let i = 0; i < domains.length; i++) {
-                            var dir = (ids[i] % 2 == 0) ? "Right" : "Left";
-                            document.write(
-                                '<div class="col-sm-3 animate-box" data-animate-effect="fadeIn' + dir + '">\
-                              <a href="' + urls[i] + '" >\
-                                <div class="services color-' + ids[i] + '">\
-                                  <span class="icon2"><i class="fa fa-' + icons[i] + '"></i></span>\
-                                  <h3>' + domains[i] + '</h3>\
-                                </div>\
-                              </a>\
-                            </div>'
-                            );
-                        }
-
-                    </script>
-                </div>
-            </div>
-        </section>
-
-        <br>
-        <br>
-
-        <section class="colorlib-skills" data-section="skills">
-            <div class="colorlib-narrow-content">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                        <h2>My Skills</h2>
-                        <hr>
-                    </div>
-                </div>
-                <p class="animate-box" data-animate-effect="fadeInLeft">Few of the skills that I consider myself
-                    acquainted with, to serve the given opportunity are showcased here.</p>
-                <div class="container">
-                    <div class="row">
-                        <script type="text/javascript">
-                            var skills = ["Python", "HTML/CSS/Javascript", "PHP", "database", "GitHub/Git",
-                                "Machine Learning","Deep Learning","linux"
-                            ];
-                            var value = [85, 80, 75, 70, 80, 65,70,80];
-                            for (let i = 0; i < skills.length; i++) {
-                                var dir = (i % 2 == 0) ? "Right" : "Left";
-                                document.write(
-                                    '<div class="col-md-6 animate-box" data-animate-effect="fadeIn' + dir + '">\
-                                  <div class="progress-wrap">\
-                                      <h3>' + skills[i] + '</h3>\
-                                      <div class="progress">\
-                                          <div class="progress-bar color-' + (i + 1) +
-                                    '" role="progressbar" aria-valuenow="' + value[i] +
-                                    '" aria-valuemin="0" aria-valuemax="100" style="width:' + value[i] + '%">\
-                                              <span>' + value[i] + '%</span>\
-                                          </div>\
-                                      </div>\
-                                  </div>\
-                              </div>');
-                            }
-
-                        </script>
-                    </div>
-                </div>
-        </section>
-
-        <br>
-        <br>
-
-        <section class="colorlib-experience" data-section="experience">
-            <div class="colorlib-narrow-content">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                        <h2>Work Experience</h2>
-                        <hr>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="timeline-centered">
-                                <script type="text/javascript">
-                                    var timeSpan = ["july 2018 - August 2018", "May 2020 - Present"
-                                    ];
-                                    var AT = ["PARVAM CONSUL-TECH PRIVATE LIMITED, Bangalore",
-                                        "JPMorgan-Chase-Virtual-Internship",
-                                    ];
-                                    var internType = ["IOT Intern", "Software Engineering Intern"
-                                    ];
-                                    var descriptions = [
-                                        "Book my Smart slot project prototype done under Mr. Raghu k.",
-                                        "Software Engineering Virtual Internship online provided by JPMorgan on InsideSherpa.",
-                                         ];
-                                    var iclass = ["desktop", "code", "user", "globe"];
-                                    var color = [5, 1, 2];
-                                    for (let i = 0; i < AT.length; i++) {
-                                        var dir = (i % 2 == 0) ? "Right" : "Left";
-                                        document.write(
-                                            '<article class="timeline-entry animate-box" data-animate-effect="fadeIn' +
-                                            dir + '">\
-										<div class="timeline-entry-inner">\
-											<div class="timeline-icon color-' + color[i] + '">\
-												<i class="fa fa-' + iclass[i] + '"></i>\
-											</div>\
-											<div class="timeline-label">\
-												<h2><a href="#">' + AT[i] + '</a> <span>' + timeSpan[i] + '</span></h2>\
-												<p><strong><a href="#">' + internType[i] + '</a></strong>\
-													<br> ' + descriptions[i] + '</p>\
-												<p></p>\
-											</div>\
-										</div>\
-									</article>');
-                                    }
-
-                                </script>
-                                <article class="timeline-entry begin animate-box" data-animate-effect="fadeInBottom">
-                                    <div class="timeline-entry-inner">
-                                        <div class="timeline-icon color-3">
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-        </section>
-
-
-        <section class="colorlib-project" data-section="project">
-            <div class="colorlib-narrow-content">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                        <h2>Projects</h2>
-                        <hr>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <script type="text/javascript">
-                            var domains = ["Obstacle Avoiding Robot",
-                                "Disaster Response Pipeline",  
-                                "Slotify--Music-web-player",
-                                "StackOverflow Data Analysis",
-                                "Gaussian-and-Binomial-Distribution (python packages)"
-                            ];
-                            var ppDomains = [
-                                "For more details about the project please refer to the Final_report.docx file and phase ii ppt file in github",
-                                "Disaster Response Pipeline Project from Udacity's Data Science Nanodegree.We will make an AI pipeline to arrange calamity occasions with the goal that we can send the messages to a proper catastrophe alleviation office. We will prepare on informational index containing genuine messages that were sent during catastrophe occasions from Figure Eight.",
-                                "Its a website similar to spotify.Working Version of Full Stack Spotify Clone construct utilizing HTML5, CSS, jQuery/Ajax and PHP.",
-                                "For this venture, I was interestested in utilizing StackOverflow Dataset(2017 and 2018) from Kaggle to all the more likely comprehend:Question 1: Which Country has the highest number of users in Stackoverflow ?Question 2: Which Programming Language are highly used in United States ?Question 3: Which Programming Language are in highly demand in United States ?",
-                                "you can install this Gaussian and Binomial Distribution Packages to solve the distribution problems in python ."
-                            ];
-                            var urls = ["https://github.com/bibekuchiha/Obstacle-Avoiding-Robot",
-                                "https://github.com/bibekuchiha/Disaster-Response_Pipeline",
-                                "https://github.com/bibekuchiha/Slotify--Music-web-player",
-                                "https://github.com/bibekuchiha/Write-A-Data-Science-Blog-Post",
-                                "https://github.com/bibekuchiha/Gaussian-and-Binomial-Distribution"
-                            ];
-                            var icons = ["car", "pipeline", "music player", "stackoverflow", ""];
-                            for (let i = 0; i < domains.length; i++) {
-                                var dir = (ids[i] % 2 == 0) ? "Right" : "Left";
-                                document.write(
-                                    '<div class="col-md-12 animate-box" data-animate-effect="fadeIn' + dir + '">\
-                              <a href="' + urls[i] + '" >\
-                                <div class="services color-' + (i + 1) + '">\
-                                  <span class="icon2"><i class="fa fa-' + icons[i] + '"></i></span>\
-                                  <h3>' + domains[i] + '</h3>\
-                                  <p>' + ppDomains[i] + '</p>\
-                                </div>\
-                              </a>\
-                            </div>'
-                                );
-                            }
-
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="colorlib-carousel" data-section="carousel">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <script type="text/javascript">
-                        var numCarousel = 4;
-                        for (let i = 0; i < numCarousel; i++)
-                            document.write(
-                                '<li data-target="#carouselExampleIndicators" data-slide-to="' + i + '"' + (i == 0 ?
-                                    ' class="active"' : '') + '></li>'
-                            );
-
-                    </script>
-                </ol>
-                <div class="carousel-inner text-center" style="max-height:800px;">
-                    <script type="text/javascript">
-                        for (let i = 0; i < numCarousel; i++)
-                            document.write(
-                                '<div class="carousel-item ' + (i == 0 ? 'active' : '') + '">\
-								<img class="w-30" src="img/img' + (i + 1) + '.jpg" alt="Slide' + (i + 1) + '">\
-							</div>');
-
-                    </script>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </section>
-
-
-        <div class="footer">
-            <div class="second">
-                <div class="fixed-content">
-                    <h1>Contact Me</h1>
-                </div>
-            </div>
-            <div class="fixed-content">
-                <div class="icon-row blue">
-                    <a href="https://www.facebook.com/bibek.shahshankhar/"><i class="fa fa-facebook"></i></a>
-                    <a href="shahshankharbibek@gmail.com"><i class="fa fa-envelope"></i><a/a> <a
-                        <a href="https://www.instagram.com/uchiha_bibek9/?hl=en"><i class="fa fa-instagram"></i></a>
-                </div>
-                <p></p>
-                <i class="fa fa-chevron-up black" style="color:#000;"
-                    onclick="window.scroll({  top: 0,  left: 0,  behavior: 'smooth'});"></i>
-            </div>
+        <div class="card">
+          <h3 style="margin-bottom: 18px; color: #fff;">Core Skills</h3>
+          <div class="skills-grid" id="skillsGrid"></div>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <section id="timeline" style="background:#0a1526; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+    <div class="container">
+      <h2 class="section-title">Recent Timeline</h2>
+      <p class="section-subtitle">
+        Updated based on your recent professional direction, with emphasis on data leadership, reporting modernization, integration, and analytics work.
+      </p>
+      <div class="timeline-wrap" id="timelineWrap"></div>
+    </div>
+  </section>
 
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
-        <script src="js/jquery.easing.1.3.js"></script>
-        <script src="js/jquery.waypoints.min.js"></script>
-        <script src="js/jquery.flexslider-min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.countTo.js"></script>
-        <script src="js/services.js"></script>
-        <script src="js/modernizr-2.6.2.min.js"></script>
-        <script src="js/script.js"></script>
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Selected Projects</h2>
+      <p class="section-subtitle">
+        Key work aligned with your current profile in reporting, data engineering, integration, machine learning, and operational analytics.
+      </p>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </section>
 
-    </body>
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Let’s Connect</h2>
+      <p>
+        Open to opportunities in data analytics, reporting, automation, and integration where strong business understanding and technical execution create measurable impact.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:shahshankharbibek@gmail.com" class="btn btn-primary">shahshankharbibek@gmail.com</a>
+        <a href="https://github.com/bibekuchiha" class="btn btn-outline" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/bibek-shah-shankhar/" class="btn btn-outline" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </section>
 
+  <div class="footer">
+    <div class="container">
+      <p>© 2026 Bibek Shah Shankhar. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    const highlights = [
+      "Data professional with experience in terminal operations, reporting, automation, and system integration.",
+      "Hands-on with SQL Server, Power BI, Python, WSO2 MI, DB2, Talend, and Apache Superset.",
+      "Focused on turning operational data into reliable reporting, scalable integrations, and actionable insights."
+    ];
+
+    const skills = [
+      "SQL Server & Stored Procedures",
+      "Power BI",
+      "Python",
+      "WSO2 MI & API Integration",
+      "Talend & Qlik CDC",
+      "DB2 / GTOS / Terminal Data",
+      "Apache Superset",
+      "Automation & Reporting"
+    ];
+
+    const timeline = [
+      {
+        period: "Jun 2025 – Present",
+        company: "PSA Halifax, Halifax, Canada",
+        role: "Team Leader – Data Operations & Reporting",
+        details: "Leading data operations, reporting modernization, and automation initiatives for terminal operations. Supporting cross-system integrations, operational analytics, API migration work, and dashboard delivery for internal teams and customers."
+      },
+      {
+        period: "Oct 2024 – Jun 2025",
+        company: "PSA Halifax, Halifax, Canada",
+        role: "Data Analyst",
+        details: "Built and optimized SQL-based reporting, Power BI dashboards, and operational data workflows. Worked on GTOS, Tideworks, and Salesforce-related reporting with a focus on performance, accuracy, and automation."
+      },
+      {
+        period: "Previous Role",
+        company: "United HR Solution Pvt Ltd, Itahari, Nepal",
+        role: "Junior Data Analyst",
+        details: "Collected, analyzed, and interpreted datasets, created reports in Excel and Power BI, and supported predictive modeling and operational reporting improvements."
+      }
+    ];
+
+    const projects = [
+      {
+        title: "Terminal Reporting Modernization",
+        desc: "Rebuilt and standardized operational reports during platform and reporting transitions, improving consistency, reliability, and delivery speed across terminal reporting workflows."
+      },
+      {
+        title: "MuleSoft to WSO2 Migration",
+        desc: "Worked on migrating integration logic from MuleSoft to WSO2 Micro Integrator, including API redesign, data service alignment, logging improvements, and production-ready integration patterns."
+      },
+      {
+        title: "Customer Dashboards with Apache Superset",
+        desc: "Delivered interactive customer-facing visuals using Apache Superset to provide operational insights from GTOS data where Power BI licensing was limited."
+      },
+      {
+        title: "Relocation Recommendation System",
+        desc: "Built a machine learning project to help newcomers to Canada identify suitable relocation areas using data analysis, model development, and visualization."
+      },
+      {
+        title: "Cross-System Data Integration",
+        desc: "Improved data consistency and validation across GTOS, Mainsail, TDR, CHR, and related operational datasets using SQL procedures, reconciliations, and automated checks."
+      },
+      {
+        title: "SQL Procedure Optimization",
+        desc: "Improved large SQL views, reporting procedures, and automation logic to support faster, cleaner, and more reliable operational reporting."
+      }
+    ];
+
+    const highlightsList = document.getElementById('highlightsList');
+    const skillsGrid = document.getElementById('skillsGrid');
+    const timelineWrap = document.getElementById('timelineWrap');
+    const projectsGrid = document.getElementById('projectsGrid');
+
+    highlights.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'highlight-item';
+      div.textContent = item;
+      highlightsList.appendChild(div);
+    });
+
+    skills.forEach(skill => {
+      const div = document.createElement('div');
+      div.className = 'skill-pill';
+      div.textContent = skill;
+      skillsGrid.appendChild(div);
+    });
+
+    timeline.forEach(item => {
+      const article = document.createElement('article');
+      article.className = 'timeline-item';
+      article.innerHTML = `
+        <div class="timeline-top">
+          <div>
+            <h3>${item.role}</h3>
+            <p>${item.company}</p>
+          </div>
+          <div class="timeline-date">${item.period}</div>
+        </div>
+        <div class="desc">${item.details}</div>
+      `;
+      timelineWrap.appendChild(article);
+    });
+
+    projects.forEach(project => {
+      const div = document.createElement('div');
+      div.className = 'card project-card';
+      div.innerHTML = `
+        <h3>${project.title}</h3>
+        <p>${project.desc}</p>
+      `;
+      projectsGrid.appendChild(div);
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+  </script>
+</body>
 </html>
