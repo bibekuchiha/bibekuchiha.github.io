@@ -3,314 +3,786 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bibek Shah Shankhar | Portfolio</title>
+  <title>Bibek Shah Shankhar | Data Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg: #070b16;
+      --bg-soft: rgba(255,255,255,0.06);
+      --card: rgba(13, 19, 38, 0.8);
+      --card-2: rgba(20, 28, 54, 0.86);
+      --line: rgba(255,255,255,0.12);
+      --text: #eef4ff;
+      --muted: #a6b7d7;
+      --primary: #6a7cff;
+      --secondary: #00d4ff;
+      --accent: #ff4fd8;
+      --success: #79ffb7;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --radius-sm: 18px;
+      --max: 1180px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #08111f;
-      color: #e5eefc;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(106,124,255,0.22), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(0,212,255,0.16), transparent 22%),
+        radial-gradient(circle at 80% 85%, rgba(255,79,216,0.16), transparent 26%),
+        linear-gradient(180deg, #050814 0%, #09101f 48%, #060912 100%);
+      color: var(--text);
+      overflow-x: hidden;
       line-height: 1.6;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.06));
+      pointer-events: none;
+      z-index: -2;
     }
 
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; }
+
     .container {
-      width: min(1120px, 92%);
+      width: min(var(--max), 92%);
       margin: 0 auto;
+    }
+
+    .floating-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: -1;
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 260px; height: 260px;
+      top: 90px; left: -60px;
+      background: rgba(106,124,255,0.28);
+    }
+
+    .orb-2 {
+      width: 320px; height: 320px;
+      bottom: 80px; right: -90px;
+      background: rgba(255,79,216,0.18);
+      animation-delay: -3s;
+    }
+
+    .orb-3 {
+      width: 220px; height: 220px;
+      top: 45%; left: 60%;
+      background: rgba(0,212,255,0.16);
+      animation-delay: -6s;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-20px) translateX(14px); }
     }
 
     .navbar {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(8, 17, 31, 0.92);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 10, 20, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 0;
+      padding: 16px 0;
+      gap: 20px;
     }
 
-    .logo {
-      font-size: 1.1rem;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      color: #ffffff;
+      letter-spacing: .02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+      box-shadow: 0 12px 30px rgba(106,124,255,0.36);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: .95rem;
+      font-weight: 900;
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 22px;
       list-style: none;
-      font-size: 0.95rem;
-      color: #c7d7f2;
+      color: var(--muted);
+      font-size: .95rem;
     }
 
-    .nav-links a:hover {
-      color: #6ec1ff;
+    .nav-links a {
+      transition: .25s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: white;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      transition: .25s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+
+    .menu-btn {
+      display: none;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 14px;
+      cursor: pointer;
     }
 
     .hero {
-      background: linear-gradient(135deg, #08111f 0%, #10233f 45%, #17345b 100%);
-      padding: 90px 0 70px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 82px 0 50px;
+      position: relative;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.4fr 0.9fr;
-      gap: 40px;
+      grid-template-columns: 1.25fr .95fr;
+      gap: 34px;
       align-items: center;
     }
 
     .eyebrow {
-      display: inline-block;
-      color: #74c7ff;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 0.75rem;
-      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: #cde4ff;
+      font-size: .82rem;
       font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--success), var(--secondary));
+      box-shadow: 0 0 14px rgba(121,255,183,0.65);
     }
 
     .hero h1 {
-      font-size: 3.6rem;
-      line-height: 1.1;
-      color: #ffffff;
+      font-size: clamp(2.8rem, 6vw, 5.4rem);
+      line-height: 1.02;
       margin-bottom: 18px;
+      letter-spacing: -0.05em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff 0%, #b6c8ff 30%, #74e8ff 58%, #ff93e8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero p {
+      color: #d4dff5;
       font-size: 1.08rem;
       max-width: 720px;
-      color: #d7e4f8;
     }
 
     .hero-actions {
-      margin-top: 30px;
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
+      margin-top: 28px;
     }
 
     .btn {
-      display: inline-block;
-      padding: 13px 22px;
-      border-radius: 14px;
-      font-weight: 600;
-      transition: 0.25s ease;
-      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: .25s ease;
+      cursor: pointer;
     }
 
     .btn-primary {
-      background: #2f9fff;
       color: white;
-      box-shadow: 0 12px 28px rgba(47, 159, 255, 0.22);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 16px 34px rgba(82, 127, 255, 0.28);
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      background: #2494f5;
+    .btn-primary:hover { transform: translateY(-2px) scale(1.01); }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.12);
+      color: #edf4ff;
     }
 
-    .btn-outline {
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #e7f0ff;
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.08);
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.10);
       transform: translateY(-2px);
     }
 
-    .hero-card {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
+    .hero-panel {
+      position: relative;
+      background: linear-gradient(180deg, rgba(19,28,51,0.92), rgba(13,20,37,0.92));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
       padding: 28px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
     }
 
-    .hero-card h3 {
-      font-size: 1.2rem;
-      color: #ffffff;
-      margin-bottom: 18px;
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(255,79,216,0.34), transparent 70%);
+      pointer-events: none;
     }
 
-    .hero-card .meta {
-      margin-bottom: 18px;
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 16px;
     }
 
-    .hero-card span {
-      display: block;
-      font-size: 0.86rem;
-      color: #8fb0d8;
-      margin-bottom: 4px;
+    .panel-chip {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #dbe7ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 700;
     }
 
-    .hero-card p {
-      color: #eff6ff;
-      font-size: 0.98rem;
-    }
-
-    section {
-      padding: 78px 0;
-    }
-
-    .section-title {
-      font-size: 2.1rem;
-      color: #ffffff;
-      margin-bottom: 14px;
-    }
-
-    .section-subtitle {
-      color: #a9bfdc;
-      max-width: 800px;
-      margin-bottom: 36px;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-    }
-
-    .card {
-      background: #0e1a2e;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 22px;
-      padding: 24px;
-      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
-    }
-
-    .highlight-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .highlight-item {
-      padding: 16px 18px;
-      border-radius: 16px;
-      background: #111f36;
-      color: #dce9fb;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .skills-grid {
+    .mini-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 14px;
+      margin-top: 20px;
     }
 
-    .skill-pill {
-      padding: 14px 16px;
-      background: #111f36;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 14px;
-      color: #e7f1ff;
-      font-weight: 500;
-      font-size: 0.95rem;
+    .mini-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
     }
 
-    .timeline-wrap {
+    .mini-card span {
+      color: var(--muted);
+      font-size: .82rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .mini-card strong {
+      color: white;
+      font-size: 1rem;
+      display: block;
+    }
+
+    .stats {
+      padding: 18px 0 30px;
+    }
+
+    .stats-grid {
       display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
     }
 
-    .timeline-item {
-      background: #0d182a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
       border-radius: 22px;
-      padding: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
     }
 
-    .timeline-item::before {
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--secondary), var(--primary), var(--accent));
+      opacity: .9;
+    }
+
+    .stat-number {
+      font-size: 2.15rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .section-tag {
+      color: #d7e5ff;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: .84rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+    }
+
+    .glass-card {
+      background: linear-gradient(180deg, rgba(16,23,42,0.9), rgba(12,17,32,0.88));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .intro-copy {
+      color: #dce7fb;
+      margin-bottom: 22px;
+      font-size: 1rem;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .highlight-item {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: .25s ease;
+    }
+
+    .highlight-item:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .highlight-item h4 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .highlight-item p {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .skills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .skill-chip {
+      padding: 11px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(106,124,255,0.16), rgba(0,212,255,0.08));
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #eef4ff;
+      font-weight: 600;
+      font-size: .92rem;
+      transition: .25s ease;
+      cursor: default;
+    }
+
+    .skill-chip:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 30px rgba(57, 100, 255, 0.16);
+    }
+
+    .focus-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .focus-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .focus-item:last-child { border-bottom: 0; }
+
+    .focus-dot {
+      width: 12px;
+      height: 12px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      box-shadow: 0 0 16px rgba(0,212,255,0.42);
+      flex-shrink: 0;
+    }
+
+    .focus-item h4 { margin-bottom: 4px; }
+    .focus-item p { color: var(--muted); }
+
+    .experience {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-card {
+      position: relative;
+      padding: 24px 24px 24px 28px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(16,24,46,0.88), rgba(11,17,32,0.88));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: .25s ease;
+    }
+
+    .timeline-card:hover { transform: translateY(-4px); }
+
+    .timeline-card::before {
       content: "";
       position: absolute;
       left: 0;
       top: 0;
       width: 5px;
       height: 100%;
-      background: linear-gradient(180deg, #2f9fff, #74c7ff);
+      background: linear-gradient(180deg, var(--secondary), var(--primary), var(--accent));
     }
 
     .timeline-top {
       display: flex;
       justify-content: space-between;
       gap: 20px;
+      margin-bottom: 14px;
       align-items: flex-start;
-      margin-bottom: 10px;
     }
 
-    .timeline-top h3 {
-      color: #ffffff;
-      font-size: 1.2rem;
+    .timeline-role {
+      font-size: 1.18rem;
       margin-bottom: 4px;
     }
 
-    .timeline-top p {
-      color: #74c7ff;
-      font-weight: 500;
+    .timeline-company {
+      color: #8fdfff;
+      font-weight: 600;
     }
 
     .timeline-date {
-      color: #9fb6d4;
-      font-size: 0.92rem;
+      color: #d6e4ff;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: .85rem;
       white-space: nowrap;
     }
 
-    .timeline-item .desc {
-      color: #d4e2f7;
+    .timeline-desc {
+      color: #d9e4f7;
+      margin-bottom: 16px;
+    }
+
+    .timeline-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .timeline-points span {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #eaf3ff;
+      font-size: .84rem;
+    }
+
+    .projects-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .filter-btn {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      color: #d7e5ff;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: .25s ease;
+      font-weight: 600;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: linear-gradient(135deg, rgba(106,124,255,0.32), rgba(0,212,255,0.20));
+      color: white;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
+    .project-card {
+      background: linear-gradient(180deg, rgba(16,24,46,0.88), rgba(11,17,32,0.92));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: .28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary), var(--primary), var(--accent));
+      opacity: 0;
+      transition: .25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .project-card:hover::after { opacity: 1; }
+
+    .project-tag {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #cce0ff;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
     .project-card h3 {
-      color: #ffffff;
+      font-size: 1.16rem;
       margin-bottom: 10px;
-      font-size: 1.14rem;
     }
 
     .project-card p {
-      color: #d1e0f3;
-      font-size: 0.97rem;
+      color: var(--muted);
+      font-size: .96rem;
+      margin-bottom: 16px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .project-meta span {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: .78rem;
+      color: #e4efff;
+    }
+
+    .project-link {
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-link:hover { color: #8fe4ff; }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .showcase-panel {
+      min-height: 100%;
+    }
+
+    .metric-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .metric-row span {
+      color: #ecf4ff;
+      font-weight: 600;
+      font-size: .94rem;
+    }
+
+    .bar {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .bar > div {
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--secondary), var(--primary), var(--accent));
+      transition: width 1.2s ease;
     }
 
     .contact {
       text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: #07101d;
+      padding-bottom: 90px;
     }
 
-    .contact p {
-      color: #bdd0ea;
+    .contact-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(18,26,49,0.92), rgba(12,18,34,0.92));
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 30px;
+      padding: 36px 26px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(0,212,255,0.16), transparent 26%), radial-gradient(circle at 80% 20%, rgba(255,79,216,0.12), transparent 22%);
+      pointer-events: none;
+    }
+
+    .contact-card p {
+      color: var(--muted);
       max-width: 700px;
       margin: 0 auto 26px;
     }
@@ -319,305 +791,706 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
     }
 
     .footer {
+      padding: 22px 0 42px;
+      color: #8ca0c4;
       text-align: center;
-      color: #7f98bb;
-      padding: 24px 0 40px;
-      font-size: 0.9rem;
+      font-size: .92rem;
     }
 
-    .menu-toggle {
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 14, 0.75);
+      backdrop-filter: blur(10px);
       display: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-      color: #fff;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 120;
     }
 
-    @media (max-width: 900px) {
+    .modal.show { display: flex; }
+
+    .modal-content {
+      width: min(760px, 96%);
+      background: linear-gradient(180deg, rgba(18,26,49,0.96), rgba(10,16,29,0.96));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .modal h3 { font-size: 1.45rem; margin-bottom: 12px; }
+    .modal p { color: var(--muted); margin-bottom: 18px; }
+    .modal-list { display: grid; gap: 10px; }
+    .modal-list li {
+      list-style: none;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #eaf3ff;
+    }
+
+    @media (max-width: 1024px) {
       .hero-grid,
       .about-grid,
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .timeline-top {
-        flex-direction: column;
-      }
-
-      .hero h1 {
-        font-size: 2.7rem;
-      }
+      .showcase-grid,
+      .projects-grid,
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 780px) {
+      .hero,
+      section { padding: 60px 0; }
+      .hero-grid,
+      .about-grid,
+      .showcase-grid,
+      .projects-grid,
+      .stats-grid,
+      .highlight-grid,
+      .mini-grid { grid-template-columns: 1fr; }
+      .timeline-top,
+      .section-head { flex-direction: column; align-items: flex-start; }
+      .metric-row { grid-template-columns: 1fr; }
+      .menu-btn { display: inline-flex; }
       .nav-links {
         display: none;
         position: absolute;
-        top: 68px;
+        top: 72px;
         right: 4%;
-        width: 220px;
-        flex-direction: column;
-        background: #0d182a;
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 16px;
+        width: 230px;
         padding: 16px;
+        border-radius: 20px;
+        background: rgba(8,12,24,0.96);
+        border: 1px solid rgba(255,255,255,0.1);
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: var(--shadow);
       }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .skills-grid,
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 70px;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
-      }
+      .nav-links.open { display: flex; }
     }
   </style>
 </head>
 <body>
+  <div class="floating-orb orb-1"></div>
+  <div class="floating-orb orb-2"></div>
+  <div class="floating-orb orb-3"></div>
+
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="#home" class="logo">Bibek Shah Shankhar</a>
-      <div class="menu-toggle" id="menuToggle">☰</div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#timeline">Timeline</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <a href="#home" class="brand">
+        <div class="brand-mark">BS</div>
+        <div>
+          <div style="font-size:1rem; color:white;">Bibek Shah Shankhar</div>
+          <div style="font-size:.78rem; color:var(--muted); font-weight:600;">Data • Analytics • Integration</div>
+        </div>
+      </a>
+
+      <button class="menu-btn" id="menuBtn">Menu</button>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">Portfolio</span>
-        <h1>Bibek Shah Shankhar</h1>
-        <p>
-          Data Analyst and Team Leader focused on operational reporting, automation, system integration, and data-driven decision-making. Experienced in terminal operations, SQL development, dashboarding, API integrations, and process modernization.
-        </p>
-        <div class="hero-actions">
-          <a href="https://www.linkedin.com/in/bibek-shah-shankhar/" class="btn btn-primary" target="_blank">LinkedIn</a>
-          <a href="https://github.com/bibekuchiha" class="btn btn-outline" target="_blank">GitHub</a>
-          <a href="mailto:shahshankharbibek@gmail.com" class="btn btn-outline">Email</a>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal show">
+          <div class="eyebrow">Interactive Portfolio</div>
+          <h1>
+            Turning <span class="gradient-text">operational data</span><br />
+            into modern reporting,<br />
+            automation, and insight.
+          </h1>
+          <p>
+            I build practical data solutions that improve visibility, streamline workflows, and connect systems across analytics, reporting, APIs, and terminal operations. My work blends business understanding with execution in SQL, Power BI, automation, and integration engineering.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">Explore Projects</a>
+            <a href="https://www.linkedin.com/in/bibek-shah-shankhar/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+            <a href="https://github.com/bibekuchiha" target="_blank" class="btn btn-ghost">GitHub</a>
+            <a href="mailto:shahshankharbibek@gmail.com" class="btn btn-ghost">Email</a>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal show">
+          <div class="panel-top">
+            <div>
+              <div style="font-size:.82rem; color:var(--muted); margin-bottom:8px;">Current Position</div>
+              <h3 style="font-size:1.45rem; margin-bottom:6px;">Team Leader – Data Operations & Reporting</h3>
+              <div style="color:#8fdfff; font-weight:600;">PSA Halifax</div>
+            </div>
+            <div class="panel-chip">2026 Focus</div>
+          </div>
+
+          <p style="color:var(--muted); margin-bottom:18px;">
+            Leading reporting modernization, cross-system data integration, dashboard delivery, workflow automation, and API migration initiatives with a strong focus on reliable operational analytics.
+          </p>
+
+          <div class="mini-grid">
+            <div class="mini-card">
+              <span>Core Stack</span>
+              <strong>SQL • Power BI • Python</strong>
+            </div>
+            <div class="mini-card">
+              <span>Integration</span>
+              <strong>WSO2 MI • ETL • APIs</strong>
+            </div>
+            <div class="mini-card">
+              <span>Domain</span>
+              <strong>Terminal Operations Analytics</strong>
+            </div>
+            <div class="mini-card">
+              <span>Strength</span>
+              <strong>Execution + Business Context</strong>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="hero-card">
-        <div class="meta">
-          <span>Current Role</span>
-          <h3>Team Leader – Data Operations & Reporting</h3>
-        </div>
-        <div class="meta">
-          <span>Organization</span>
-          <p>PSA Halifax</p>
-        </div>
-        <div class="meta">
-          <span>Focus</span>
-          <p>SQL, Power BI, Automation, API Integration, WSO2 MI, Operational Analytics</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">About</h2>
-      <p class="section-subtitle">
-        A data professional with hands-on experience in reporting, integration, and analytics, focused on building reliable operational data solutions and improving decision-making through automation and scalable reporting.
-      </p>
-
-      <div class="about-grid">
-        <div class="card">
-          <div class="highlight-list" id="highlightsList"></div>
-        </div>
-
-        <div class="card">
-          <h3 style="margin-bottom: 18px; color: #fff;">Core Skills</h3>
-          <div class="skills-grid" id="skillsGrid"></div>
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <div class="stat-number" data-count="3">0</div>
+            <div class="stat-label">Roles Across Analytics Leadership Journey</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number" data-count="6">0</div>
+            <div class="stat-label">Highlighted Data & Integration Projects</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number" data-count="8">0</div>
+            <div class="stat-label">Core Tools & Platforms Showcased</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number" data-count="100">0</div>
+            <div class="stat-label">Focus on Practical, High-Impact Delivery</div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="timeline" style="background:#0a1526; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
-    <div class="container">
-      <h2 class="section-title">Recent Timeline</h2>
-      <p class="section-subtitle">
-        Updated based on your recent professional direction, with emphasis on data leadership, reporting modernization, integration, and analytics work.
-      </p>
-      <div class="timeline-wrap" id="timelineWrap"></div>
-    </div>
-  </section>
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>About Me</h2>
+            <p>A portfolio redesigned to feel more alive, more modern, and more reflective of technical depth, leadership growth, and product-style thinking.</p>
+          </div>
+          <div class="section-tag">Creative + Professional</div>
+        </div>
 
-  <section id="projects">
-    <div class="container">
-      <h2 class="section-title">Selected Projects</h2>
-      <p class="section-subtitle">
-        Key work aligned with your current profile in reporting, data engineering, integration, machine learning, and operational analytics.
-      </p>
-      <div class="projects-grid" id="projectsGrid"></div>
-    </div>
-  </section>
+        <div class="about-grid">
+          <div class="glass-card reveal">
+            <p class="intro-copy">
+              I work at the intersection of analytics, reporting, and systems integration. My focus is not only building dashboards or writing queries, but also creating dependable data workflows that help teams act faster, reduce manual work, and trust what they see.
+            </p>
+            <div class="highlight-grid">
+              <div class="highlight-item">
+                <h4>Operational Analytics</h4>
+                <p>Transforming complex operational data into clear dashboards, reporting layers, and business-friendly insights.</p>
+              </div>
+              <div class="highlight-item">
+                <h4>Automation Mindset</h4>
+                <p>Reducing repetitive manual effort by automating extraction, transformation, validation, and delivery processes.</p>
+              </div>
+              <div class="highlight-item">
+                <h4>Integration Engineering</h4>
+                <p>Connecting systems through APIs, ETL patterns, and production-friendly service logic for reliable data exchange.</p>
+              </div>
+              <div class="highlight-item">
+                <h4>Business Impact</h4>
+                <p>Designing solutions that improve visibility, reporting quality, team efficiency, and operational decision-making.</p>
+              </div>
+            </div>
 
-  <section class="contact" id="contact">
-    <div class="container">
-      <h2 class="section-title">Let’s Connect</h2>
-      <p>
-        Open to opportunities in data analytics, reporting, automation, and integration where strong business understanding and technical execution create measurable impact.
-      </p>
-      <div class="contact-links">
-        <a href="mailto:shahshankharbibek@gmail.com" class="btn btn-primary">shahshankharbibek@gmail.com</a>
-        <a href="https://github.com/bibekuchiha" class="btn btn-outline" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/bibek-shah-shankhar/" class="btn btn-outline" target="_blank">LinkedIn</a>
+            <div class="skills-wrap" id="skillsWrap"></div>
+          </div>
+
+          <div class="glass-card reveal">
+            <h3 style="font-size:1.25rem; margin-bottom:10px;">Current Focus Areas</h3>
+            <p style="color:var(--muted); margin-bottom:8px;">The areas where I create the most value right now.</p>
+            <div class="focus-list">
+              <div class="focus-item">
+                <div class="focus-dot"></div>
+                <div>
+                  <h4>Reporting Modernization</h4>
+                  <p>Improving structure, consistency, visual quality, and maintainability across operational reporting solutions.</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <div class="focus-dot"></div>
+                <div>
+                  <h4>API & Data Service Migration</h4>
+                  <p>Converting integration logic into production-ready APIs and service layers with stronger logging and flow control.</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <div class="focus-dot"></div>
+                <div>
+                  <h4>Cross-System Reliability</h4>
+                  <p>Improving consistency between platforms, validating outputs, and enabling cleaner operational visibility.</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <div class="focus-dot"></div>
+                <div>
+                  <h4>Scalable Insight Delivery</h4>
+                  <p>Making data easier to consume for internal teams and external users through interactive and useful digital experiences.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="footer">
-    <div class="container">
-      <p>© 2026 Bibek Shah Shankhar. All rights reserved.</p>
+    <section class="experience" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Recent Timeline</h2>
+            <p>Presented with stronger storytelling and cleaner visual hierarchy so the experience feels more dynamic than a standard resume section.</p>
+          </div>
+          <div class="section-tag">Career Path</div>
+        </div>
+
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Selected Projects</h2>
+            <p>Interactive project cards with category filters and deeper details, making the site feel more engaging and less static.</p>
+          </div>
+          <div class="section-tag">Interactive Portfolio</div>
+        </div>
+
+        <div class="projects-filter reveal" id="projectFilters"></div>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <section id="impact">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Impact & Strengths</h2>
+            <p>This section adds a more visual breakdown of where the portfolio is strongest and helps the page feel richer and more modern.</p>
+          </div>
+          <div class="section-tag">Visual Depth</div>
+        </div>
+
+        <div class="showcase-grid">
+          <div class="glass-card showcase-panel reveal">
+            <h3 style="font-size:1.25rem; margin-bottom:8px;">Capability Snapshot</h3>
+            <p style="color:var(--muted);">A visual indicator of strengths across the blend of analytics, operations, and integration work.</p>
+            <div class="metric-list">
+              <div class="metric-row">
+                <span>SQL & Data Logic</span>
+                <div class="bar"><div data-width="95%"></div></div>
+              </div>
+              <div class="metric-row">
+                <span>Dashboard Delivery</span>
+                <div class="bar"><div data-width="90%"></div></div>
+              </div>
+              <div class="metric-row">
+                <span>Integration Work</span>
+                <div class="bar"><div data-width="88%"></div></div>
+              </div>
+              <div class="metric-row">
+                <span>Automation</span>
+                <div class="bar"><div data-width="86%"></div></div>
+              </div>
+              <div class="metric-row">
+                <span>Business Context</span>
+                <div class="bar"><div data-width="92%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card showcase-panel reveal">
+            <h3 style="font-size:1.25rem; margin-bottom:8px;">What Makes This Redesign Better</h3>
+            <p style="color:var(--muted); margin-bottom:18px;">The site now feels more like a premium personal brand page instead of a basic portfolio template.</p>
+            <div class="focus-list">
+              <div class="focus-item">
+                <div class="focus-dot"></div>
+                <div>
+                  <h4>More Detailed Content</h4>
+                  <p>Added strengths, focus areas, metric visuals, richer project descriptions, and a clearer career narrative.</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <div class="focus-dot"></div>
+                <div>
+                  <h4>Interactive Experience</h4>
+                  <p>Includes animated counters, project filtering, project detail modal, reveal-on-scroll, and animated visual bars.</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <div class="focus-dot"></div>
+                <div>
+                  <h4>More Eye-Catching Visuals</h4>
+                  <p>Uses layered gradients, glowing accents, glassmorphism cards, motion, and stronger contrast for a premium finish.</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <div class="focus-dot"></div>
+                <div>
+                  <h4>Better Personal Branding</h4>
+                  <p>The redesigned layout highlights leadership, technical range, and project impact much more clearly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-card reveal">
+          <h2 style="font-size:clamp(2rem, 4vw, 3rem); margin-bottom:10px;">Let’s Build Something Useful</h2>
+          <p>
+            Open to data, reporting, analytics, automation, and integration opportunities where strong execution and business understanding can create measurable operational value.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:shahshankharbibek@gmail.com" class="btn btn-primary">Email Me</a>
+            <a href="https://github.com/bibekuchiha" target="_blank" class="btn btn-ghost">GitHub</a>
+            <a href="https://www.linkedin.com/in/bibek-shah-shankhar/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 Bibek Shah Shankhar. Designed to be bold, interactive, and modern.</div>
+  </footer>
+
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">×</button>
+      <div id="modalBody"></div>
     </div>
   </div>
 
   <script>
-    const highlights = [
-      "Data professional with experience in terminal operations, reporting, automation, and system integration.",
-      "Hands-on with SQL Server, Power BI, Python, WSO2 MI, DB2, Talend, and Apache Superset.",
-      "Focused on turning operational data into reliable reporting, scalable integrations, and actionable insights."
-    ];
-
     const skills = [
-      "SQL Server & Stored Procedures",
-      "Power BI",
-      "Python",
-      "WSO2 MI & API Integration",
-      "Talend & Qlik CDC",
-      "DB2 / GTOS / Terminal Data",
-      "Apache Superset",
-      "Automation & Reporting"
+      'SQL Server', 'Power BI', 'Python', 'WSO2 MI', 'API Integration', 'Talend', 'DB2 / GTOS', 'Apache Superset', 'Automation', 'Data Modeling', 'Reporting Design', 'Operational Analytics'
     ];
 
-    const timeline = [
+    const timelineData = [
       {
-        period: "Jun 2025 – Present",
-        company: "PSA Halifax, Halifax, Canada",
-        role: "Team Leader – Data Operations & Reporting",
-        details: "Leading data operations, reporting modernization, and automation initiatives for terminal operations. Supporting cross-system integrations, operational analytics, API migration work, and dashboard delivery for internal teams and customers."
+        role: 'Team Leader – Data Operations & Reporting',
+        company: 'PSA Halifax, Halifax, Canada',
+        period: 'Jun 2025 – Present',
+        desc: 'Leading data operations, reporting modernization, automation improvements, cross-system analytics delivery, and integration-focused initiatives for terminal operations.',
+        tags: ['Leadership', 'Reporting', 'Automation', 'Integration']
       },
       {
-        period: "Oct 2024 – Jun 2025",
-        company: "PSA Halifax, Halifax, Canada",
-        role: "Data Analyst",
-        details: "Built and optimized SQL-based reporting, Power BI dashboards, and operational data workflows. Worked on GTOS, Tideworks, and Salesforce-related reporting with a focus on performance, accuracy, and automation."
+        role: 'Data Analyst',
+        company: 'PSA Halifax, Halifax, Canada',
+        period: 'Oct 2024 – Jun 2025',
+        desc: 'Built and optimized SQL-driven reports, dashboards, and workflows across operational systems with a strong focus on accuracy, performance, and scalable reporting delivery.',
+        tags: ['SQL', 'Power BI', 'Operations', 'Optimization']
       },
       {
-        period: "Previous Role",
-        company: "United HR Solution Pvt Ltd, Itahari, Nepal",
-        role: "Junior Data Analyst",
-        details: "Collected, analyzed, and interpreted datasets, created reports in Excel and Power BI, and supported predictive modeling and operational reporting improvements."
+        role: 'Junior Data Analyst',
+        company: 'United HR Solution Pvt Ltd, Itahari, Nepal',
+        period: 'Previous Role',
+        desc: 'Worked on analysis, reporting, data interpretation, and predictive-model support while strengthening the foundations of a long-term analytics career.',
+        tags: ['Analytics', 'Excel', 'Power BI', 'Foundations']
       }
     ];
 
     const projects = [
       {
-        title: "Terminal Reporting Modernization",
-        desc: "Rebuilt and standardized operational reports during platform and reporting transitions, improving consistency, reliability, and delivery speed across terminal reporting workflows."
+        title: 'Terminal Reporting Modernization',
+        category: 'Reporting',
+        desc: 'Rebuilt and improved operational reports to make them more consistent, reliable, and easier to maintain across terminal reporting workflows.',
+        stack: ['Power BI', 'SQL Server', 'Operations'],
+        details: [
+          'Standardized report structures across operational use cases.',
+          'Improved readability and consistency in data presentation.',
+          'Reduced friction in report delivery and maintenance.'
+        ]
       },
       {
-        title: "MuleSoft to WSO2 Migration",
-        desc: "Worked on migrating integration logic from MuleSoft to WSO2 Micro Integrator, including API redesign, data service alignment, logging improvements, and production-ready integration patterns."
+        title: 'MuleSoft to WSO2 Migration',
+        category: 'Integration',
+        desc: 'Worked on API and data service migration patterns, redesigning flows to be easier to troubleshoot, operate, and deploy in production.',
+        stack: ['WSO2 MI', 'APIs', 'Data Services'],
+        details: [
+          'Aligned service behavior with existing integration logic.',
+          'Improved logging, payload handling, and mediator flow structure.',
+          'Focused on production-friendly API design and debugging visibility.'
+        ]
       },
       {
-        title: "Customer Dashboards with Apache Superset",
-        desc: "Delivered interactive customer-facing visuals using Apache Superset to provide operational insights from GTOS data where Power BI licensing was limited."
+        title: 'Customer Dashboards with Apache Superset',
+        category: 'Analytics',
+        desc: 'Delivered customer-facing operational visuals to make GTOS data more accessible when Power BI licensing was limited.',
+        stack: ['Superset', 'SQL', 'Visualization'],
+        details: [
+          'Created interactive visual views for customer access.',
+          'Improved data visibility outside internal reporting tools.',
+          'Balanced usability with practical platform constraints.'
+        ]
       },
       {
-        title: "Relocation Recommendation System",
-        desc: "Built a machine learning project to help newcomers to Canada identify suitable relocation areas using data analysis, model development, and visualization."
+        title: 'Relocation Recommendation System',
+        category: 'Machine Learning',
+        desc: 'Built a machine learning project to recommend relocation areas for newcomers to Canada using analytics, modeling, and visual insights.',
+        stack: ['Python', 'ML', 'Visualization'],
+        details: [
+          'Combined data analysis with predictive modeling.',
+          'Focused on a practical use case with social relevance.',
+          'Presented findings through clear visual outputs.'
+        ]
       },
       {
-        title: "Cross-System Data Integration",
-        desc: "Improved data consistency and validation across GTOS, Mainsail, TDR, CHR, and related operational datasets using SQL procedures, reconciliations, and automated checks."
+        title: 'Cross-System Data Integration',
+        category: 'Integration',
+        desc: 'Improved validation and consistency across multiple systems by using data checks, procedures, and reconciliation logic.',
+        stack: ['SQL', 'Validation', 'Operational Data'],
+        details: [
+          'Connected and compared outputs across operational systems.',
+          'Improved trust in data movement and reporting outputs.',
+          'Added logic that supports more dependable workflows.'
+        ]
       },
       {
-        title: "SQL Procedure Optimization",
-        desc: "Improved large SQL views, reporting procedures, and automation logic to support faster, cleaner, and more reliable operational reporting."
+        title: 'SQL Procedure Optimization',
+        category: 'Engineering',
+        desc: 'Enhanced large SQL procedures and view logic to support faster, cleaner, and more maintainable data operations.',
+        stack: ['SQL Server', 'Performance', 'Maintenance'],
+        details: [
+          'Improved logic structure for operational reporting use cases.',
+          'Focused on clarity, performance, and long-term maintainability.',
+          'Supported more scalable reporting and automation processes.'
+        ]
       }
     ];
 
-    const highlightsList = document.getElementById('highlightsList');
-    const skillsGrid = document.getElementById('skillsGrid');
-    const timelineWrap = document.getElementById('timelineWrap');
+    const skillsWrap = document.getElementById('skillsWrap');
+    const timeline = document.getElementById('timeline');
     const projectsGrid = document.getElementById('projectsGrid');
-
-    highlights.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'highlight-item';
-      div.textContent = item;
-      highlightsList.appendChild(div);
-    });
+    const projectFilters = document.getElementById('projectFilters');
+    const modal = document.getElementById('projectModal');
+    const modalBody = document.getElementById('modalBody');
+    const modalClose = document.getElementById('modalClose');
+    const navLinks = document.getElementById('navLinks');
+    const menuBtn = document.getElementById('menuBtn');
 
     skills.forEach(skill => {
-      const div = document.createElement('div');
-      div.className = 'skill-pill';
-      div.textContent = skill;
-      skillsGrid.appendChild(div);
+      const chip = document.createElement('div');
+      chip.className = 'skill-chip';
+      chip.textContent = skill;
+      skillsWrap.appendChild(chip);
     });
 
-    timeline.forEach(item => {
-      const article = document.createElement('article');
-      article.className = 'timeline-item';
-      article.innerHTML = `
+    timelineData.forEach(item => {
+      const card = document.createElement('article');
+      card.className = 'timeline-card reveal';
+      card.innerHTML = `
         <div class="timeline-top">
           <div>
-            <h3>${item.role}</h3>
-            <p>${item.company}</p>
+            <h3 class="timeline-role">${item.role}</h3>
+            <div class="timeline-company">${item.company}</div>
           </div>
           <div class="timeline-date">${item.period}</div>
         </div>
-        <div class="desc">${item.details}</div>
+        <div class="timeline-desc">${item.desc}</div>
+        <div class="timeline-points">
+          ${item.tags.map(tag => `<span>${tag}</span>`).join('')}
+        </div>
       `;
-      timelineWrap.appendChild(article);
+      timeline.appendChild(card);
     });
 
-    projects.forEach(project => {
-      const div = document.createElement('div');
-      div.className = 'card project-card';
-      div.innerHTML = `
+    const categories = ['All', ...new Set(projects.map(p => p.category))];
+    let activeCategory = 'All';
+
+    function renderFilters() {
+      projectFilters.innerHTML = '';
+      categories.forEach(category => {
+        const btn = document.createElement('button');
+        btn.className = `filter-btn ${category === activeCategory ? 'active' : ''}`;
+        btn.textContent = category;
+        btn.addEventListener('click', () => {
+          activeCategory = category;
+          renderFilters();
+          renderProjects();
+        });
+        projectFilters.appendChild(btn);
+      });
+    }
+
+    function openProject(project) {
+      modalBody.innerHTML = `
+        <div class="project-tag">${project.category}</div>
         <h3>${project.title}</h3>
         <p>${project.desc}</p>
+        <div class="project-meta" style="margin-bottom:18px;">
+          ${project.stack.map(item => `<span>${item}</span>`).join('')}
+        </div>
+        <ul class="modal-list">
+          ${project.details.map(detail => `<li>${detail}</li>`).join('')}
+        </ul>
       `;
-      projectsGrid.appendChild(div);
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function renderProjects() {
+      projectsGrid.innerHTML = '';
+      const filtered = activeCategory === 'All' ? projects : projects.filter(p => p.category === activeCategory);
+
+      filtered.forEach(project => {
+        const card = document.createElement('article');
+        card.className = 'project-card reveal';
+        card.innerHTML = `
+          <div class="project-tag">${project.category}</div>
+          <h3>${project.title}</h3>
+          <p>${project.desc}</p>
+          <div class="project-meta">
+            ${project.stack.map(item => `<span>${item}</span>`).join('')}
+          </div>
+          <button class="project-link">View details →</button>
+        `;
+        card.querySelector('.project-link').addEventListener('click', () => openProject(project));
+        projectsGrid.appendChild(card);
+      });
+
+      setTimeout(setupReveal, 50);
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
     });
 
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
+    function closeModal() {
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
     });
 
     document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
-      });
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
+
+    function animateCounters() {
+      document.querySelectorAll('.stat-number').forEach(counter => {
+        const target = Number(counter.dataset.count);
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 40));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          counter.textContent = target === 100 ? `${current}%` : `${current}+`;
+        }, 28);
+      });
+    }
+
+    let revealObserver;
+    function setupReveal() {
+      const elements = document.querySelectorAll('.reveal:not(.show)');
+      if (!revealObserver) {
+        revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+              if (entry.target.querySelector('.bar > div')) {
+                entry.target.querySelectorAll('.bar > div').forEach(bar => {
+                  bar.style.width = bar.dataset.width;
+                });
+              }
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+      }
+      elements.forEach(el => revealObserver.observe(el));
+    }
+
+    function setActiveNav() {
+      const sections = [...document.querySelectorAll('main section')];
+      const links = [...document.querySelectorAll('.nav-links a')];
+      const scrollY = window.scrollY + 120;
+      let currentId = sections[0]?.id;
+
+      sections.forEach(section => {
+        if (scrollY >= section.offsetTop) currentId = section.id;
+      });
+
+      links.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+      });
+    }
+
+    renderFilters();
+    renderProjects();
+    setupReveal();
+    animateCounters();
+    setActiveNav();
+
+    window.addEventListener('scroll', setActiveNav);
   </script>
 </body>
 </html>
